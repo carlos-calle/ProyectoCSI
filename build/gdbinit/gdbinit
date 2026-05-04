@@ -1,0 +1,2 @@
+source C:/esp/csi_segmentation/build/gdbinit/symbols
+source C:/esp/csi_segmentation/build/gdbinit/connect
