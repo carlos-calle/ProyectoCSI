@@ -1,7 +1,7 @@
 {
     "version":            "1.3",
     "project_name":       "csi_segmentation",
-    "project_version":    "1",
+    "project_version":    "6c7295c-dirty",
     "project_path":       "C:/esp/csi_segmentation",
     "idf_path":           "C:/esp/v6.0.1/esp-idf",
     "build_dir":          "C:/esp/csi_segmentation/build",
