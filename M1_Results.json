@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-05-10T21:41:01",
+  "milestone": "M1_SegmentadorValidado_Semana3",
+  "project": "CSI Segmentation - Continuous Human Activity Recognition",
+  "evaluation_method": "Flujos CSI sinteticos continuos",
+  "metrics_reference": "Range-based Precision/Recall por union de rangos",
+  "segmenter_parameters": {
+    "window_size": 50,
+    "num_subcarriers": 64,
+    "variance_threshold_start": 2.6,
+    "variance_threshold_stop": 2.5,
+    "hysteresis_samples": 10,
+    "max_segment_length": 100
+  },
+  "scenarios": [
+    {
+      "scenario_id": 1,
+      "name": "Flujo normal",
+      "total_frames": 375,
+      "expected_activities": 2,
+      "detected_activities": 3,
+      "metrics": {
+        "precision": 0.7529,
+        "recall": 0.96,
+        "f1_score": 0.844,
+        "tp_range": 192,
+        "fp_range": 63,
+        "fn_range": 8
+      },
+      "status": "EXITOSO"
+    },
+    {
+      "scenario_id": 2,
+      "name": "Actividades cortas con ruido abundante",
+      "total_frames": 470,
+      "expected_activities": 2,
+      "detected_activities": 3,
+      "metrics": {
+        "precision": 0.5187,
+        "recall": 0.925,
+        "f1_score": 0.6647,
+        "tp_range": 111,
+        "fp_range": 103,
+        "fn_range": 9
+      },
+      "status": "ACEPTABLE"
+    },
+    {
+      "scenario_id": 3,
+      "name": "Actividades sostenidas",
+      "total_frames": 500,
+      "expected_activities": 2,
+      "detected_activities": 4,
+      "metrics": {
+        "precision": 0.9,
+        "recall": 0.9,
+        "f1_score": 0.9,
+        "tp_range": 360,
+        "fp_range": 40,
+        "fn_range": 40
+      },
+      "status": "EXITOSO"
+    }
+  ],
+  "summary": {
+    "avg_f1_score": 0.8029,
+    "avg_precision": 0.7239,
+    "avg_recall": 0.9283,
+    "validation_threshold": 0.7,
+    "threshold_met": true,
+    "scenarios_passed": 2,
+    "scenarios_total": 3,
+    "overall_status": "VALIDACION EXITOSA"
+  },
+  "algorithm_characteristics": {
+    "type": "Adaptive variance-based segmentation",
+    "complexity": "O(1) per subcarrier sample",
+    "memory": "O(window_size * num_subcarriers)",
+    "hardware_target": "ESP32",
+    "real_time_capable": true
+  },
+  "validation_notes": [
+    "Firmware, portable C++ segmenter and Python evaluator now use the same M1 parameters.",
+    "Python evaluation no longer requires numpy or external packages.",
+    "CSI support is enabled in sdkconfig through CONFIG_ESP_WIFI_CSI_ENABLED=y.",
+    "The max segment timeout was tuned from 120 to 100 frames after a focused grid search.",
+    "Hardware validation on ESP32-D0WD-V3 confirmed CSI activation, increasing CSI frame counters, buffer readiness, event detection and timeout closure."
+  ],
+  "hardware_validation": {
+    "date": "2026-05-10",
+    "board": "ESP32-D0WD-V3 revision v3.1",
+    "port": "COM5",
+    "flash_status": "SUCCESS",
+    "monitor_status": "CSI_ACTIVE_AND_RECEIVING_FRAMES",
+    "evidence": {
+      "csi_active": true,
+      "sta_connected": true,
+      "ap_created": "ESP32_CSI_AP",
+      "frames_seen": true,
+      "buffer_ready": true,
+      "event_detected": true,
+      "timeout_closed": true
+    },
+    "key_logs": [
+      "CSI ACTIVO",
+      "[TELEM] total=45 (+45/2s)",
+      "[TELEM] total=64 (+19/2s) buffer=LISTO",
+      "EVENTO DETECTADO",
+      "FIN POR TIMEOUT"
+    ]
+  }
+}

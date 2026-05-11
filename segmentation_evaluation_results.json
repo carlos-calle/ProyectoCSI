@@ -1,0 +1,161 @@
+{
+  "timestamp": "2026-05-10T23:36:10.166720",
+  "milestone": "M1_SegmentadorValidado_Semana3",
+  "project": "CSI Segmentation - Continuous Human Activity Recognition",
+  "evaluation_method": "Flujos CSI sinteticos continuos",
+  "metrics_reference": "Range-based Precision/Recall por union de rangos",
+  "segmenter_parameters": {
+    "window_size": 50,
+    "num_subcarriers": 64,
+    "variance_threshold_start": 2.6,
+    "variance_threshold_stop": 2.5,
+    "hysteresis_samples": 10,
+    "max_segment_length": 100
+  },
+  "scenarios": [
+    {
+      "scenario_id": 1,
+      "total_frames": 375,
+      "expected_activities": 2,
+      "detected_activities": 3,
+      "ground_truth": [
+        {
+          "start_idx": 50,
+          "end_idx": 150,
+          "duration": 100
+        },
+        {
+          "start_idx": 225,
+          "end_idx": 325,
+          "duration": 100
+        }
+      ],
+      "detected_ranges": [
+        {
+          "start_idx": 54,
+          "end_idx": 154,
+          "duration": 100
+        },
+        {
+          "start_idx": 154,
+          "end_idx": 209,
+          "duration": 55
+        },
+        {
+          "start_idx": 229,
+          "end_idx": 329,
+          "duration": 100
+        }
+      ],
+      "metrics": {
+        "precision": 0.7529,
+        "recall": 0.96,
+        "f1_score": 0.844,
+        "tp_range": 192,
+        "fp_range": 63,
+        "fn_range": 8
+      }
+    },
+    {
+      "scenario_id": 2,
+      "total_frames": 470,
+      "expected_activities": 2,
+      "detected_activities": 3,
+      "ground_truth": [
+        {
+          "start_idx": 100,
+          "end_idx": 160,
+          "duration": 60
+        },
+        {
+          "start_idx": 310,
+          "end_idx": 370,
+          "duration": 60
+        }
+      ],
+      "detected_ranges": [
+        {
+          "start_idx": 105,
+          "end_idx": 205,
+          "duration": 100
+        },
+        {
+          "start_idx": 314,
+          "end_idx": 414,
+          "duration": 100
+        },
+        {
+          "start_idx": 414,
+          "end_idx": 428,
+          "duration": 14
+        }
+      ],
+      "metrics": {
+        "precision": 0.5187,
+        "recall": 0.925,
+        "f1_score": 0.6647,
+        "tp_range": 111,
+        "fp_range": 103,
+        "fn_range": 9
+      }
+    },
+    {
+      "scenario_id": 3,
+      "total_frames": 500,
+      "expected_activities": 2,
+      "detected_activities": 4,
+      "ground_truth": [
+        {
+          "start_idx": 30,
+          "end_idx": 230,
+          "duration": 200
+        },
+        {
+          "start_idx": 270,
+          "end_idx": 470,
+          "duration": 200
+        }
+      ],
+      "detected_ranges": [
+        {
+          "start_idx": 49,
+          "end_idx": 149,
+          "duration": 100
+        },
+        {
+          "start_idx": 149,
+          "end_idx": 249,
+          "duration": 100
+        },
+        {
+          "start_idx": 249,
+          "end_idx": 349,
+          "duration": 100
+        },
+        {
+          "start_idx": 349,
+          "end_idx": 449,
+          "duration": 100
+        }
+      ],
+      "metrics": {
+        "precision": 0.9,
+        "recall": 0.9,
+        "f1_score": 0.9,
+        "tp_range": 360,
+        "fp_range": 40,
+        "fn_range": 40
+      }
+    }
+  ],
+  "summary": {
+    "avg_f1_score": 0.8029,
+    "avg_precision": 0.7239,
+    "avg_recall": 0.9283,
+    "validation_threshold": 0.7,
+    "threshold_met": true,
+    "scenarios_passed": 2,
+    "scenarios_total": 3,
+    "overall_status": "VALIDACION EXITOSA"
+  }
+}
